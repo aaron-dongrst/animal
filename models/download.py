@@ -43,7 +43,7 @@ def reporthook(count, block_size, total_size):
 
 # --- MAIN SCRIPT ---
 def main():
-    print(f"🚀 Starting Setup for ZooGuardian...")
+    print(f"🚀 Starting Setup for FaunaVision...")
 
     for item in FILES:
         print(f"\n\n------------------------------------------------")
