@@ -1,0 +1,5 @@
+video_dirs:
+  Healthy: "data/raw_videos/Healthy"
+  Not Healthy: "data/raw_videos/Not Healthy"
+
+report_path: "reports/summary_report.xlsx"

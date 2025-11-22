@@ -59,7 +59,7 @@ class VisionEngine:
         cap = cv2.VideoCapture(video_path)
         
         if not cap.isOpened():
-            raise ValueError(f"Could not open video file: {video_path}")
+            raise ValueError(f"Could not open video file: {video_path}. Ensure the file is not corrupted or unsupported.")
         
         # Get video properties
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -81,16 +81,19 @@ class VisionEngine:
             ret, frame = cap.read()
             
             if ret:
-                # Convert BGR to RGB
-                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                frames.append(frame_rgb)
+                try:
+                    # Convert BGR to RGB
+                    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    frames.append(frame_rgb)
+                except Exception as e:
+                    logger.warning(f"Error converting frame at index {idx} to RGB: {str(e)}")
             else:
-                logger.warning(f"Could not read frame at index {idx}")
+                logger.warning(f"Could not read frame at index {idx}. Skipping this frame.")
         
         cap.release()
         
         if len(frames) == 0:
-            raise ValueError(f"No frames could be extracted from video: {video_path}")
+            raise ValueError(f"No frames could be extracted from video: {video_path}. Check if the video is valid.")
         
         logger.info(f"Successfully extracted {len(frames)} frames")
         return np.array(frames)

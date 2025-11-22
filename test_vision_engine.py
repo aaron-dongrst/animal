@@ -37,6 +37,10 @@ def test_all_videos():
         
         video_files = [f for f in os.listdir(directory) if f.endswith('.mp4')]
         
+        if not video_files:
+            print(f"No .mp4 files found in directory: {directory}")
+            continue
+        
         print(f"\n{'='*80}")
         print(f"Testing {category} Videos")
         print(f"{'='*80}\n")
@@ -50,6 +54,10 @@ def test_all_videos():
             print("-" * 80)
             
             try:
+                # Check if the file is a valid video
+                if not os.path.isfile(video_path):
+                    raise ValueError(f"File not found or not a valid file: {video_path}")
+                
                 # Get predictions
                 predictions = engine.classify_video(video_path, top_k=3)
                 
@@ -71,6 +79,13 @@ def test_all_videos():
                     'all_predictions': predictions
                 })
                 
+            except ValueError as ve:
+                print(f"\n❌ ValueError: {str(ve)}")
+                results.append({
+                    'video': video_file,
+                    'category': category,
+                    'error': f"ValueError: {str(ve)}"
+                })
             except Exception as e:
                 print(f"\n❌ Error processing {video_file}: {str(e)}")
                 results.append({
