@@ -1,4 +1,3 @@
-models/configs/
-models/download.py
+models/configs/git a
 *.pkl
 *.yaml
