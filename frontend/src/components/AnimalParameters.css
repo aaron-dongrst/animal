@@ -1,0 +1,67 @@
+.animal-parameters {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.parameters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.parameter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.parameter-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.parameter-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.required {
+  color: #e53e3e;
+}
+
+.parameter-input {
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.parameter-input:focus {
+  outline: none;
+  border-color: #4a9d3a;
+  box-shadow: 0 0 0 3px rgba(74, 157, 58, 0.1);
+}
+
+.parameter-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+@media (max-width: 768px) {
+  .parameters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .parameter-group.full-width {
+    grid-column: 1;
+  }
+}
+

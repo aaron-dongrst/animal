@@ -2,3 +2,32 @@ models/configs/git a
 *.pkl
 *.yaml
 .conda
+
+# Backend temp files
+temp/
+backend/temp/
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,120 @@
+.analysis-results {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.result-card {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 2px;
+  border: 1px solid #e0e0e0;
+  transition: border-color 0.2s;
+}
+
+.result-card:hover {
+  border-color: #bdbdbd;
+}
+
+.result-card.health-status {
+  grid-column: 1 / -1;
+  background: #f5f5f5;
+}
+
+.result-card.health-status.healthy {
+  border-color: #4a9d3a;
+  background: #e8f5e9;
+}
+
+.result-card.health-status.unhealthy {
+  border-color: #d32f2f;
+  background: #ffebee;
+}
+
+.result-card.health-status.unknown {
+  border-color: #f57c00;
+  background: #fff3e0;
+}
+
+.result-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.result-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+  word-break: break-word;
+}
+
+.result-value-large {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.reasoning-section,
+.recommendations-section {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: #fafafa;
+  border-radius: 2px;
+  border-left: 3px solid #4a9d3a;
+}
+
+.reasoning-title,
+.recommendations-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 1rem;
+}
+
+.reasoning-text {
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.recommendations-text {
+  color: #4a5568;
+  line-height: 1.8;
+}
+
+.recommendation-item {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.recommendation-item::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #4a9d3a;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .result-card.health-status {
+    grid-column: 1;
+  }
+}
+
