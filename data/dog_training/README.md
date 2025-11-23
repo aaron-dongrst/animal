@@ -1,23 +1,22 @@
-# Dog Training Videos Directory
+# 📁 Upload Your Dog Videos Here
 
-## Purpose
-Upload your dog behavior videos here for training the YOLO model.
+## ⭐ This is where you upload your training videos!
 
-## Folder Structure
+### Folder Structure
 
 ```
 dog_training/
-├── train/          # 80% of your videos go here
-│   ├── pacing/     # Videos of dogs pacing (distress behavior)
-│   ├── scratching/ # Videos of dogs scratching excessively (distress behavior)
-│   ├── sleeping/   # Videos of dogs sleeping (normal behavior)
-│   ├── walking/    # Videos of dogs walking normally (normal behavior)
-│   └── resting/    # Videos of dogs resting calmly (normal behavior)
-├── val/            # 10% of your videos go here (same structure)
-└── test/           # 10% of your videos go here (same structure)
+├── train/          ← Upload 80% of your videos here
+│   ├── pacing/     ← Dogs pacing (distress behavior)
+│   ├── scratching/← Dogs scratching (distress behavior)
+│   ├── sleeping/  ← Dogs sleeping (normal behavior)
+│   ├── walking/    ← Dogs walking (normal behavior)
+│   └── resting/    ← Dogs resting (normal behavior)
+├── val/            ← Upload 10% of your videos here (same structure)
+└── test/           ← Upload 10% of your videos here (same structure)
 ```
 
-## Instructions
+### Instructions
 
 1. **Organize your videos:**
    - **Distressed behaviors** → `pacing/` or `scratching/`
@@ -28,39 +27,16 @@ dog_training/
    - 10% → `val/` folders
    - 10% → `test/` folders
 
-3. **Supported video formats:**
-   - `.mp4`
-   - `.avi`
-   - `.mov`
-   - `.mkv`
+3. **Video requirements:**
+   - Formats: `.mp4`, `.avi`, `.mov`, `.mkv`
+   - Length: 10-60 seconds
+   - Minimum: 50-100 videos per behavior class (more is better!)
 
-4. **Video requirements:**
-   - 10-60 seconds long
-   - Clear view of the dog
-   - Various lighting conditions and angles
-   - Minimum 50-100 videos per behavior class recommended
-
-## Example
-
-```
-train/
-├── pacing/
-│   ├── dog1_pacing.mp4
-│   ├── dog2_pacing.mp4
-│   └── ...
-├── scratching/
-│   ├── dog1_scratching.mp4
-│   └── ...
-└── ...
-```
-
-## Next Steps
+### Next Steps
 
 After uploading videos:
-1. Run: `python scripts/extract_frames.py data/dog_training/train/pacing data/dog_frames/train/pacing`
-2. Repeat for all behaviors and splits
-3. Then run: `python scripts/prepare_yolo_dataset.py ...`
-4. Finally: `python scripts/train_dog_behavior.py`
+1. Run: `./scripts/run_all_steps.sh`
+2. Wait for training to complete
+3. Use your trained model!
 
-See `DOG_DISTRESS_TRAINING_GUIDE.md` for detailed instructions.
-
+See `docs/EXACT_STEPS.md` for detailed instructions.
