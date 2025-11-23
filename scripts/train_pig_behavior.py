@@ -5,6 +5,13 @@ from ultralytics import YOLO
 import torch
 import os
 from pathlib import Path
+import time
+from datetime import datetime, timedelta
+try:
+    from tqdm import tqdm
+    TQDM_AVAILABLE = True
+except ImportError:
+    TQDM_AVAILABLE = False
 
 # Configuration
 DATA_YAML = "data/yolo_dataset/data.yaml"
@@ -53,7 +60,19 @@ def main():
     print(f"  Batch size: {BATCH_SIZE}")
     print(f"  Image size: {IMAGE_SIZE}")
     print(f"  Data: {DATA_YAML}")
+    print(f"  Device: {device}")
     print()
+    
+    # Calculate estimated time
+    # Rough estimate: ~2-5 seconds per epoch on GPU, 10-30 seconds on CPU
+    est_seconds_per_epoch = 3 if device == "cuda" else 20
+    est_total_seconds = est_seconds_per_epoch * EPOCHS
+    est_time = timedelta(seconds=est_total_seconds)
+    print(f"Estimated training time: ~{est_time}")
+    print(f"  (Actual time may vary based on dataset size and hardware)")
+    print()
+    
+    start_time = time.time()
     
     try:
         results = model.train(
@@ -62,13 +81,17 @@ def main():
             imgsz=IMAGE_SIZE,
             batch=BATCH_SIZE,
             device=device,
-        project="pig_behavior_classification",
-        name="yolov8_pig_behavior",
-            patience=20,  # Early stopping
+            project="pig_behavior_classification",
+            name="yolov8_pig_behavior",
+            patience=10,  # Early stopping: stop if no improvement for 10 epochs
             save=True,
             plots=True,
             verbose=True
         )
+        
+        elapsed_time = time.time() - start_time
+        elapsed_timedelta = timedelta(seconds=int(elapsed_time))
+        print(f"\nActual training time: {elapsed_timedelta}")
         
         print("\n" + "="*60)
         print("Training complete!")
@@ -85,11 +108,11 @@ def main():
         # Save model path
         best_model_path = os.path.join(results.save_dir, "weights", "best.pt")
         if os.path.exists(best_model_path):
-        print(f"\nBest model path: {best_model_path}")
-        print("\nTo use this model, set:")
-        print(f"  export YOLO_MODEL_PATH=\"{best_model_path}\"")
-        print("\nOr use the default path:")
-        print(f"  export YOLO_MODEL_PATH=\"pig_behavior_classification/yolov8_pig_behavior/weights/best.pt\"")
+            print(f"\nBest model path: {best_model_path}")
+            print("\nTo use this model, set:")
+            print(f"  export YOLO_MODEL_PATH=\"{best_model_path}\"")
+            print("\nOr use the default path:")
+            print(f"  export YOLO_MODEL_PATH=\"pig_behavior_classification/yolov8_pig_behavior/weights/best.pt\"")
         else:
             print(f"\nWarning: Best model not found at {best_model_path}")
             print("Check the weights directory in the results folder.")

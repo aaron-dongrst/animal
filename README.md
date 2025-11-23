@@ -1,99 +1,68 @@
-# 🐷 PigVision - Pig Distress Detection
+# FaunaVision - Pig Behavior Analysis System
 
-AI-powered system to detect pig distress behaviors through video analysis.
-
----
+AI-powered system for analyzing pig behavior and health using computer vision and AI.
 
 ## Quick Start
 
-### 1. Install Dependencies
+### Backend Setup
 ```bash
+# Install dependencies
 pip install -r requirements.txt
-pip install ultralytics
-cd frontend && npm install
-```
 
-### 2. Upload Videos and Annotations ⭐
-
-**Option A: Using JSON Annotations (Recommended)**
-1. Place videos in `data/videos/`
-2. Place JSON annotation files in `data/annotations/` (same filename as video, but .json)
-3. Run: `./scripts/train_from_annotations.sh data/videos data/annotations`
-
-**Option B: Manual Organization**
-Upload videos to `data/pig_training/train/` folders (tail_biting, ear_biting, etc.)
-Then run: `./scripts/run_all_steps.sh`
-
-### 3. Train Model
-
-**With annotations:**
-```bash
-./scripts/train_from_annotations.sh data/videos data/annotations
-```
-
-**Manual organization:**
-```bash
-./scripts/run_all_steps.sh
-```
-
-### 4. Run Application
-```bash
 # Set environment variables
-export YOLO_MODEL_PATH="pig_behavior_classification/yolov8_pig_behavior/weights/best.pt"
-export OPENAI_API_KEY="your-key-here"
+export YOLO_MODEL_PATH="models/best.pt"
+export PORT=5001
+export USE_GEMINI=true
+export GEMINI_API_KEY="your-api-key-here"
 
 # Start backend
-cd backend && python app.py
-
-# Start frontend (new terminal)
-cd frontend && npm start
+python backend/app.py
 ```
 
-Open `http://localhost:3000`
-
----
-
-## JSON Annotation Format
-
-Each JSON file should contain a list of pig objects:
-
-```json
-[
-  {
-    "tracking_id": 1,
-    "frames": [0, 1, 2, 3],
-    "bounding_box": [[x1, y1, x2, y2], ...],
-    "behavior_label": "tail_biting",
-    "visibility": 1.0,
-    "ground_truth": true
-  }
-]
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npm start
 ```
 
-See `data/annotations/README.md` for details and `data/annotations/example.json` for an example.
+## Project Structure
 
----
+```
+Faunavision/
+├── backend/           # Flask API server
+│   ├── app.py        # Main API endpoints
+│   └── start.sh      # Startup script
+├── frontend/          # React frontend
+│   └── src/          # React components
+├── src/               # Core modules
+│   └── yolo_behavior_classifier.py
+├── scripts/           # Training and data processing scripts
+│   ├── train_pig_behavior.py
+│   ├── parse_annotations.py
+│   └── prepare_yolo_from_crops.py
+├── models/            # Trained YOLO models (gitignored)
+├── data/              # Training data (gitignored)
+└── Train_on_Colab.ipynb  # Google Colab training notebook
+```
 
-## Behavior Classes
+## Features
 
-**Distress (3):** tail_biting, ear_biting, aggression  
-**Normal (3):** eating, sleeping, rooting
+- **Dual Model Analysis**: Combines YOLO (20%) and Gemini Vision (80%) for behavior detection
+- **6 Behavior Classes**: tail_biting, ear_biting, aggression, eating, sleeping, rooting
+- **Health Assessment**: AI-powered health evaluation using behavior patterns
+- **Video Upload**: Upload videos for real-time analysis
 
----
+## API Endpoints
 
-## Scripts
+- `GET /health` - Health check
+- `POST /analyze` - Analyze pig video and get health assessment
 
-- `scripts/train_from_annotations.sh` - Train using JSON annotations (recommended)
-- `scripts/run_all_steps.sh` - Train with manually organized videos
-- `scripts/parse_annotations.py` - Parse JSON and extract crops
-- `scripts/train_pig_behavior.py` - Train YOLO model
+## Training
 
----
+See `Train_on_Colab.ipynb` for training the YOLO model on Google Colab.
 
-## Train on Google Colab
+## Requirements
 
-Don't have a GPU? Use `Train_on_Colab.ipynb` - see `COLAB_TRAINING_GUIDE.md`
+See `requirements.txt` for Python dependencies.
 
----
-
-**Ready? Upload videos + JSON annotations and run training!** 🐷

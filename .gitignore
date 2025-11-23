@@ -1,15 +1,39 @@
-models/configs/git a
+# Models and weights
+models/
+*.pt
+*.pth
 *.pkl
-*.yaml
-.conda
+*.weights
+*.onnx
+*.h5
+*.pb
 
-# Backend temp files
-temp/
-backend/temp/
+# Data directories
+data/
+!data/annotations/README.md
+!data/videos/README.md
+
+# Large files (>100MB)
 *.mp4
 *.avi
 *.mov
 *.mkv
+*.mkv
+*.webm
+*.flv
+
+# Logs
+*.log
+*.txt
+!requirements.txt
+!README.md
+!*.md
+
+# Backend temp files
+temp/
+backend/temp/
+backend.log
+training_log.txt
 
 # Python cache
 __pycache__/
@@ -17,17 +41,40 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+*.py[cod]
+*$py.class
 
 # Environment variables
 .env
 .env.local
+.env.*.local
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
 # OS
 .DS_Store
 Thumbs.db
+*.tmp
+
+# Node modules (frontend)
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Config files that might contain secrets
+config.yaml
+*.yaml
+!data/yolo_dataset/data.yaml

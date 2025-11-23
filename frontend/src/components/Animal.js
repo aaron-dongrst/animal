@@ -35,28 +35,59 @@ const Animal = ({ animal, onUpdate, onRemove, canRemove }) => {
 
     const formData = new FormData();
     formData.append("video", animal.video);
-    formData.append("species", animal.animal.species);
+    formData.append("species", animal.animal.species || "Pig");
     formData.append("age", animal.animal.age || "");
     formData.append("diet", animal.animal.diet || "");
     formData.append("health_conditions", animal.animal.healthConditions || "");
+    
+    // Debug: Log what we're sending
+    console.log("Sending request with:", {
+      video: animal.video ? animal.video.name : "no video",
+      species: animal.animal.species,
+      age: animal.animal.age,
+      diet: animal.animal.diet
+    });
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
+      
+      // Make the request with timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 300000); // 5 minute timeout
+      
       const response = await fetch(`${API_URL}/analyze`, {
         method: "POST",
-        body: formData
+        body: formData,
+        signal: controller.signal
       });
+      
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Analysis failed");
+        let errorMessage = "Analysis failed";
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } catch (e) {
+          errorMessage = `Server error: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
       onUpdate({ analysis: data, loading: false, error: null });
     } catch (error) {
+      let errorMessage = error.message;
+      if (error.name === "AbortError") {
+        errorMessage = "Request timed out. The video might be too large or processing is taking too long.";
+      } else if (error.message.includes("Failed to fetch") || 
+                 error.message.includes("NetworkError") ||
+                 error.message.includes("Network request failed") ||
+                 error.message.includes("fetch")) {
+        errorMessage = "Cannot connect to backend. Please make sure:\n1. Backend is running (./START_BACKEND.sh)\n2. Backend is on http://localhost:5000\n3. No firewall is blocking the connection";
+      }
       onUpdate({ 
-        error: error.message || "Failed to analyze video. Please check if the backend is running.",
+        error: errorMessage,
         loading: false 
       });
     }

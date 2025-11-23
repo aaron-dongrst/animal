@@ -24,3 +24,6 @@ requests>=2.31.0
 
 # YOLO for Behavior Classification
 ultralytics>=8.0.0
+
+# Progress bars
+tqdm>=4.65.0

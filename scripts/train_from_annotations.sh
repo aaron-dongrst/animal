@@ -31,7 +31,7 @@ mkdir -p data/pig_crops/{train,val}
 
 # For now, process all videos (you can split them manually or programmatically)
 echo "Processing all videos..."
-python scripts/parse_annotations.py "$VIDEO_DIR" "$JSON_DIR" data/pig_crops/train
+python3 scripts/parse_annotations.py "$VIDEO_DIR" "$JSON_DIR" data/pig_crops/train
 
 echo ""
 echo "Step 1 complete!"
@@ -67,8 +67,8 @@ echo ""
 echo "Step 3: Preparing YOLO datasets..."
 echo ""
 
-python scripts/prepare_yolo_from_crops.py data/pig_crops/train data/yolo_dataset/train
-python scripts/prepare_yolo_from_crops.py data/pig_crops/val data/yolo_dataset/val
+python3 scripts/prepare_yolo_from_crops.py data/pig_crops/train data/yolo_dataset/train
+python3 scripts/prepare_yolo_from_crops.py data/pig_crops/val data/yolo_dataset/val
 
 echo ""
 echo "Step 3 complete!"
@@ -103,7 +103,7 @@ echo "Step 5: Training YOLO model..."
 echo "This may take 1-4 hours depending on your GPU and dataset size."
 echo ""
 
-python scripts/train_pig_behavior.py
+python3 scripts/train_pig_behavior.py
 
 echo ""
 echo "=========================================="

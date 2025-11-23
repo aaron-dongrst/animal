@@ -3,6 +3,13 @@ Prepare YOLO dataset from cropped pig images organized by behavior.
 """
 import shutil
 from pathlib import Path
+try:
+    from tqdm import tqdm
+    TQDM_AVAILABLE = True
+except ImportError:
+    TQDM_AVAILABLE = False
+    def tqdm(iterable, desc="", total=None, unit=""):
+        return iterable
 
 # Behavior classes
 BEHAVIOR_CLASSES = {
@@ -46,9 +53,13 @@ def prepare_yolo_dataset(crops_dir, output_dir):
                      list(behavior_dir.glob("*.png")) + \
                      list(behavior_dir.glob("*.jpeg"))
         
+        if len(image_files) == 0:
+            continue
+        
         print(f"Processing {behavior_name} (class {class_id}): {len(image_files)} images")
         
-        for image_file in image_files:
+        image_iter = tqdm(image_files, desc=f"  {behavior_name}", leave=False, unit="img")
+        for image_file in image_iter:
             # Copy image
             new_image_name = f"{behavior_name}_{image_file.name}"
             new_image_path = images_dir / new_image_name
