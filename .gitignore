@@ -8,10 +8,18 @@ models/
 *.h5
 *.pb
 
-# Data directories
+# Data directories (exclude from git, but keep structure)
 data/
-!data/annotations/README.md
-!data/videos/README.md
+!data/annotations/
+!data/videos/
+!data/yolo_dataset/data.yaml
+# Exclude all data subdirectories except annotations and videos
+data/pig_*/
+data/raw_videos/
+data/vector_db/
+data/logs/
+data/yolo_dataset/train/
+data/yolo_dataset/val/
 
 # Large files (>100MB)
 *.mp4

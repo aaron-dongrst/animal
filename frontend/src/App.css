@@ -169,41 +169,80 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, rgba(252, 231, 243, 0.3) 0%, rgba(251, 207, 232, 0.2) 100%);
-  border-radius: 24px;
-  margin: 2rem 0;
+  min-height: 70vh;
+  padding: 2rem;
 }
 
-.welcome-content {
-  text-align: center;
+.welcome-container {
+  width: 100%;
   max-width: 900px;
-  background: var(--background-card);
-  padding: 4rem 3rem;
-  border-radius: 32px;
-  box-shadow: var(--shadow-xl);
-  border: 2px solid var(--border-color);
-  animation: scaleIn 0.6s ease-out;
   position: relative;
-  overflow: hidden;
 }
 
-.welcome-content::before {
-  content: '';
+/* Page Indicators */
+.page-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-light);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.indicator:hover {
+  background: var(--primary-light);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* Pages Container with Fade Transitions */
+.pages-container {
+  position: relative;
+  min-height: 500px;
+  margin-bottom: 2rem;
+}
+
+.welcome-page-content {
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateX(30px);
   pointer-events: none;
-  z-index: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.welcome-content > * {
+.welcome-page-content.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
   position: relative;
-  z-index: 1;
+}
+
+/* Get Started Widget */
+.get-started-widget {
+  background: var(--background-card);
+  border-radius: 24px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  animation: scaleIn 0.6s ease-out;
 }
 
 @keyframes scaleIn {
@@ -217,53 +256,52 @@ body {
   }
 }
 
-.welcome-icon {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 2rem;
+.widget-header {
   background: var(--background-gradient);
-  border-radius: 24px;
+  padding: 2.5rem 2.5rem 2rem;
+  text-align: center;
+  color: white;
+}
+
+.widget-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  box-shadow: var(--shadow-lg);
-  animation: pulse 2s ease-in-out infinite;
-  overflow: hidden;
-  padding: 20px;
+  padding: 15px;
+  box-shadow: var(--shadow-md);
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: var(--shadow-lg);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 20px 30px -5px rgba(236, 72, 153, 0.4);
-  }
-}
-
-.welcome-logo-image {
+.widget-logo-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.welcome-title {
-  font-size: 2.75rem;
+.widget-title {
+  font-size: 2rem;
   font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-  letter-spacing: -1px;
-  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.5px;
 }
 
-.welcome-description {
+.widget-body {
+  padding: 2.5rem;
+}
+
+.widget-description {
   font-size: 1.125rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .features-list {
@@ -271,7 +309,6 @@ body {
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2.5rem;
-  text-align: left;
 }
 
 .feature-item {
@@ -297,6 +334,7 @@ body {
 }
 
 .get-started-button {
+  width: 100%;
   padding: 1rem 2.5rem;
   background: var(--background-gradient);
   color: white;
@@ -307,8 +345,9 @@ body {
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow-lg);
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   position: relative;
   overflow: hidden;
@@ -346,6 +385,177 @@ body {
 
 .get-started-button:hover svg {
   transform: translateX(4px);
+}
+
+/* Video Page */
+.video-page {
+  background: var(--background-card);
+  border-radius: 24px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  padding: 3rem;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+.video-container {
+  margin: 2rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--background-light);
+  padding: 1rem;
+}
+
+.example-video {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+.video-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 2rem auto 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Workflow Widget */
+.workflow-widget {
+  background: var(--background-card);
+  border-radius: 24px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.workflow-widget .widget-header {
+  padding: 2.5rem 2.5rem 1.5rem;
+}
+
+.workflow-widget .widget-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.widget-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 400;
+}
+
+.workflow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.5rem;
+}
+
+.workflow-step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  background: var(--background-gradient);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+}
+
+.step-content {
+  flex: 1;
+  padding-top: 0.5rem;
+}
+
+.step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.step-description {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Page Navigation */
+.page-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nav-button {
+  padding: 0.875rem 1.5rem;
+  background: var(--background-card);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-button:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  background: var(--background-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.next-button {
+  margin-left: auto;
 }
 
 /* Example Video Section */
@@ -660,43 +870,55 @@ body {
   }
 
   .welcome-page {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
+    min-height: auto;
   }
 
-  .welcome-content {
-    padding: 2.5rem 1.5rem;
-    border-radius: 24px;
+  .pages-container {
+    min-height: 400px;
   }
 
-  .welcome-title {
-    font-size: 2rem;
+  .widget-header {
+    padding: 2rem 1.5rem 1.5rem;
   }
 
-  .welcome-description {
-    font-size: 1rem;
+  .widget-body {
+    padding: 2rem 1.5rem;
   }
 
-  .example-video-section {
-    margin-top: 2rem;
-    padding-top: 2rem;
+  .widget-title {
+    font-size: 1.75rem;
   }
 
-  .example-video-title {
-    font-size: 1.5rem;
+  .page-title {
+    font-size: 1.75rem;
   }
 
-  .workflow-section {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
+  .video-page {
+    padding: 2rem 1.5rem;
   }
 
-  .workflow-title {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+  .workflow-steps {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
   }
 
   .workflow-step {
-    padding: 1.25rem;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .step-content {
+    padding-top: 0;
+  }
+
+  .page-navigation {
+    flex-direction: column;
+  }
+
+  .next-button {
+    margin-left: 0;
   }
 
   .animals-container {

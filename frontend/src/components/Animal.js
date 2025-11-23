@@ -88,7 +88,7 @@ const Animal = ({ animal, onUpdate, onRemove, canRemove }) => {
     <div className="animal-card">
       <div className="animal-header">
         <div className="animal-title-section">
-          <div className="animal-number-badge">{animal.name.replace('Animal ', '')}</div>
+          <div className="animal-number-badge">{animal.name.replace(/^(Animal|Subject) /, '')}</div>
           <h2 className="animal-title">{animal.name}</h2>
           <button
             className="expand-button"

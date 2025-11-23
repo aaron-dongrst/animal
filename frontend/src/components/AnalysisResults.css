@@ -5,6 +5,26 @@
   animation: slideIn 0.6s ease-out;
 }
 
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: var(--background-gradient);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -112,6 +132,9 @@
   font-weight: 500;
   color: var(--text-primary);
   text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .percentage-bar-container {
@@ -205,6 +228,9 @@
   color: var(--text-secondary);
   line-height: 1.7;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .recommendations-text {
@@ -222,6 +248,9 @@
   padding-left: 1.5rem;
   border-left: 2px solid var(--border-color);
   transition: all 0.3s;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .recommendation-item:hover {
