@@ -24,6 +24,18 @@ cd frontend && npm install
 Upload videos to `data/pig_training/train/` folders (tail_biting, ear_biting, etc.)
 Then run: `./scripts/run_all_steps.sh`
 
+### 3. Train Model
+
+**With annotations:**
+```bash
+./scripts/train_from_annotations.sh data/videos data/annotations
+```
+
+**Manual organization:**
+```bash
+./scripts/run_all_steps.sh
+```
+
 ### 4. Run Application
 ```bash
 # Set environment variables
@@ -41,19 +53,24 @@ Open `http://localhost:3000`
 
 ---
 
-## Project Structure
+## JSON Annotation Format
 
+Each JSON file should contain a list of pig objects:
+
+```json
+[
+  {
+    "tracking_id": 1,
+    "frames": [0, 1, 2, 3],
+    "bounding_box": [[x1, y1, x2, y2], ...],
+    "behavior_label": "tail_biting",
+    "visibility": 1.0,
+    "ground_truth": true
+  }
+]
 ```
-Faunavision/
-├── README.md              ← You are here
-├── data/
-│   └── pig_training/      ← ⭐ Upload videos here
-├── scripts/               ← Training scripts
-│   └── run_all_steps.sh  ← Run everything
-├── frontend/              ← React UI
-├── backend/               ← Flask API
-└── src/                   ← Core modules
-```
+
+See `data/annotations/README.md` for details and `data/annotations/example.json` for an example.
 
 ---
 
@@ -66,10 +83,17 @@ Faunavision/
 
 ## Scripts
 
-- `scripts/run_all_steps.sh` - Complete training pipeline
-- `scripts/train_pig_behavior.py` - Train model
-- `scripts/test_pig_model.py` - Test model
+- `scripts/train_from_annotations.sh` - Train using JSON annotations (recommended)
+- `scripts/run_all_steps.sh` - Train with manually organized videos
+- `scripts/parse_annotations.py` - Parse JSON and extract crops
+- `scripts/train_pig_behavior.py` - Train YOLO model
 
 ---
 
-**Ready? Upload videos to `data/pig_training/` and run `./scripts/run_all_steps.sh`!**
+## Train on Google Colab
+
+Don't have a GPU? Use `Train_on_Colab.ipynb` - see `COLAB_TRAINING_GUIDE.md`
+
+---
+
+**Ready? Upload videos + JSON annotations and run training!** 🐷
