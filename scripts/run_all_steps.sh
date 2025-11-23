@@ -65,7 +65,7 @@ echo "Step 3: Training YOLO model..."
 echo "This may take 1-4 hours depending on your GPU and dataset size."
 echo ""
 
-python scripts/train_dog_behavior.py
+python scripts/train_pig_behavior.py
 
 echo ""
 echo "=========================================="
