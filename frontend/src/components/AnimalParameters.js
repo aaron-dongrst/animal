@@ -8,7 +8,7 @@ const AnimalParameters = ({ animal, onChange }) => {
 
   return (
     <div className="animal-parameters">
-      <h3 className="section-title">Dog Information</h3>
+      <h3 className="section-title">Pig Information</h3>
       
       <div className="parameters-grid">
         <div className="parameter-group">
@@ -19,7 +19,7 @@ const AnimalParameters = ({ animal, onChange }) => {
             id="species"
             type="text"
             className="parameter-input"
-            placeholder="e.g., Golden Retriever, German Shepherd, Mixed Breed"
+            placeholder="e.g., Yorkshire, Landrace, Duroc, Mixed Breed"
             value={animal.species}
             onChange={(e) => handleChange("species", e.target.value)}
             required
@@ -51,11 +51,11 @@ const AnimalParameters = ({ animal, onChange }) => {
             onChange={(e) => handleChange("diet", e.target.value)}
           >
             <option value="">Select diet...</option>
-            <option value="commercial dog food">Commercial Dog Food</option>
-            <option value="raw diet">Raw Diet</option>
-            <option value="home cooked">Home Cooked</option>
-            <option value="grain-free">Grain-Free</option>
-            <option value="prescription diet">Prescription Diet</option>
+            <option value="commercial feed">Commercial Feed</option>
+            <option value="corn-based">Corn-Based</option>
+            <option value="soybean-based">Soybean-Based</option>
+            <option value="mixed grains">Mixed Grains</option>
+            <option value="supplemented">Supplemented</option>
             <option value="other">Other</option>
           </select>
         </div>

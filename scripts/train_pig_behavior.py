@@ -1,5 +1,5 @@
 """
-Train YOLO model for dog behavior classification.
+Train YOLO model for pig behavior classification.
 """
 from ultralytics import YOLO
 import torch
@@ -15,7 +15,7 @@ MODEL_SIZE = "n"  # n=nano, s=small, m=medium, l=large, x=xlarge
 
 def main():
     print("="*60)
-    print("YOLO Dog Behavior Classification Training")
+    print("YOLO Pig Behavior Classification Training")
     print("="*60)
     print()
     
@@ -62,8 +62,8 @@ def main():
             imgsz=IMAGE_SIZE,
             batch=BATCH_SIZE,
             device=device,
-            project="dog_behavior_classification",
-            name="yolov8_dog_behavior",
+        project="pig_behavior_classification",
+        name="yolov8_pig_behavior",
             patience=20,  # Early stopping
             save=True,
             plots=True,
@@ -85,9 +85,11 @@ def main():
         # Save model path
         best_model_path = os.path.join(results.save_dir, "weights", "best.pt")
         if os.path.exists(best_model_path):
-            print(f"\nBest model path: {best_model_path}")
-            print("\nTo use this model, set:")
-            print(f"  export YOLO_MODEL_PATH=\"{best_model_path}\"")
+        print(f"\nBest model path: {best_model_path}")
+        print("\nTo use this model, set:")
+        print(f"  export YOLO_MODEL_PATH=\"{best_model_path}\"")
+        print("\nOr use the default path:")
+        print(f"  export YOLO_MODEL_PATH=\"pig_behavior_classification/yolov8_pig_behavior/weights/best.pt\"")
         else:
             print(f"\nWarning: Best model not found at {best_model_path}")
             print("Check the weights directory in the results folder.")

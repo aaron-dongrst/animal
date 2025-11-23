@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #f5e6d3 0%, #d4a574 30%, #b8865a 70%, #8b6f47 100%);
+  background: linear-gradient(135deg, #ffe5e5 0%, #ffb3b3 30%, #ff8080 70%, #cc6666 100%);
   min-height: 100vh;
   position: relative;
 }
@@ -24,10 +24,10 @@ body {
 }
 
 .App-header {
-  background: #8b6f47;
+  background: #cc6666;
   padding: 1.5rem 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-bottom: 2px solid #6b5237;
+  border-bottom: 2px solid #aa5555;
   position: relative;
   z-index: 2;
 }
@@ -98,7 +98,7 @@ body {
 
 .get-started-button {
   padding: 1rem 2.5rem;
-  background: #d4a574;
+  background: #ff8080;
   color: white;
   border: none;
   border-radius: 8px;
@@ -110,7 +110,7 @@ body {
 }
 
 .get-started-button:hover {
-  background: #b8865a;
+  background: #ff6666;
   transform: translateY(-2px);
 }
 
@@ -164,10 +164,10 @@ body {
 }
 
 .App-footer {
-  background: #6b5237;
+  background: #aa5555;
   padding: 1.5rem;
   text-align: center;
-  color: #f5e6d3;
+  color: #ffe5e5;
   font-size: 0.9rem;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   position: relative;

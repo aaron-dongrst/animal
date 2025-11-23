@@ -1,5 +1,5 @@
 """
-Test trained YOLO model on a dog video.
+Test trained YOLO model on a pig video.
 """
 import sys
 from pathlib import Path
@@ -11,14 +11,14 @@ def main():
     if len(sys.argv) < 3:
         print("Usage: python test_dog_model.py <video_path> <model_path>")
         print("\nExample:")
-        print("  python test_dog_model.py data/test_videos/dog_pacing.mp4 dog_behavior_classification/yolov8_dog_behavior/weights/best.pt")
+        print("  python test_pig_model.py data/test_videos/pig_video.mp4 pig_behavior_classification/yolov8_pig_behavior/weights/best.pt")
         sys.exit(1)
     
     video_path = sys.argv[1]
     model_path = sys.argv[2]
     
     print("="*60)
-    print("Dog Behavior Analysis")
+    print("Pig Behavior Analysis")
     print("="*60)
     print()
     

@@ -1,5 +1,5 @@
 """
-Extract frames from dog behavior videos for YOLO training.
+Extract frames from pig behavior videos for YOLO training.
 """
 import cv2
 import os
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Usage: python extract_frames.py <video_dir> <output_dir> [fps_interval]")
         print("\nExample:")
-        print("  python extract_frames.py data/dog_training/train/pacing data/dog_frames/train/pacing 1.0")
+        print("  python extract_frames.py data/pig_training/train/tail_biting data/pig_frames/train/tail_biting 1.0")
         sys.exit(1)
     
     video_dir = sys.argv[1]

@@ -14,7 +14,7 @@ function App() {
     const newId = Math.max(...animals.map(a => a.id), 0) + 1;
     const newAnimal = {
       id: newId,
-      name: `Dog ${newId}`,
+      name: `Pig ${newId}`,
       animal: {
         species: "",
         age: "",
@@ -34,7 +34,7 @@ function App() {
     if (animals.length === 0) {
       const newAnimal = {
         id: 1,
-        name: `Dog 1`,
+        name: `Pig 1`,
         animal: {
           species: "",
           age: "",
@@ -69,7 +69,7 @@ function App() {
       <header className="App-header">
         <div className="header-content">
           <img src="/FaunaVisionLogo.png" alt="FaunaVision Logo" className="header-logo" />
-          <h1>DogVision</h1>
+          <h1>PigVision</h1>
         </div>
       </header>
 
@@ -77,10 +77,10 @@ function App() {
         {showWelcome ? (
           <div className="welcome-page">
             <div className="welcome-content">
-              <h2 className="welcome-title">Welcome to DogVision</h2>
+              <h2 className="welcome-title">Welcome to PigVision</h2>
               <p className="welcome-description">
-                Monitor your dog's health through AI-powered behavior analysis.
-                Upload videos of your dog to detect distress behaviors and get detailed health insights and recommendations.
+                Monitor pig health through AI-powered behavior analysis.
+                Upload videos of pigs to detect distress behaviors (tail biting, ear biting, aggression) and get detailed health insights and recommendations.
               </p>
               <button className="get-started-button" onClick={handleGetStarted}>
                 Get Started
@@ -107,7 +107,7 @@ function App() {
       </main>
 
       <footer className="App-footer">
-        <p>DogVision - Monitoring dog health through AI-powered behavior analysis</p>
+        <p>PigVision - Monitoring pig health through AI-powered behavior analysis</p>
       </footer>
     </div>
   );

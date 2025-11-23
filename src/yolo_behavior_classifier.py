@@ -39,18 +39,18 @@ class YOLOBehaviorClassifier:
         self.model = None
         self.model_path = model_path
         
-        # Behavior classes (can be customized)
-        # Default: dog behaviors (update if training for different animals)
+        # Behavior classes for pigs
         self.behavior_classes = {
-            0: "pacing",
-            1: "scratching",
-            2: "sleeping",
-            3: "walking",
-            4: "resting"
+            0: "tail_biting",
+            1: "ear_biting",
+            2: "aggression",
+            3: "eating",
+            4: "sleeping",
+            5: "rooting"
         }
         
-        # Define which behaviors indicate distress (for dogs)
-        self.distress_behaviors = ["pacing", "scratching"]
+        # Define which behaviors indicate distress (for pigs)
+        self.distress_behaviors = ["tail_biting", "ear_biting", "aggression"]
         
         if YOLO_AVAILABLE and model_path and os.path.exists(model_path):
             try:

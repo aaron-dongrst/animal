@@ -11,9 +11,9 @@ echo "=========================================="
 echo ""
 
 # Check if videos exist
-if [ ! -d "data/dog_training/train" ]; then
-    echo "Error: data/dog_training/train not found!"
-    echo "Please upload videos to data/dog_training/ first."
+if [ ! -d "data/pig_training/train" ]; then
+    echo "Error: data/pig_training/train not found!"
+    echo "Please upload videos to data/pig_training/ first."
     exit 1
 fi
 
@@ -21,13 +21,13 @@ fi
 echo "Step 1: Extracting frames from videos..."
 echo ""
 
-BEHAVIORS=("pacing" "scratching" "sleeping" "walking" "resting")
+BEHAVIORS=("tail_biting" "ear_biting" "aggression" "eating" "sleeping" "rooting")
 SPLITS=("train" "val" "test")
 
 for split in "${SPLITS[@]}"; do
     for behavior in "${BEHAVIORS[@]}"; do
-        video_dir="data/dog_training/${split}/${behavior}"
-        frames_dir="data/dog_frames/${split}/${behavior}"
+        video_dir="data/pig_training/${split}/${behavior}"
+        frames_dir="data/pig_frames/${split}/${behavior}"
         
         if [ -d "$video_dir" ] && [ "$(ls -A $video_dir 2>/dev/null)" ]; then
             echo "Extracting frames: ${split}/${behavior}"
@@ -46,14 +46,14 @@ echo ""
 echo "Step 2: Preparing YOLO dataset..."
 echo ""
 
-if [ -d "data/dog_frames/train" ]; then
+if [ -d "data/pig_frames/train" ]; then
     echo "Preparing training dataset..."
-    python scripts/prepare_yolo_dataset.py data/dog_frames/train data/yolo_dataset/train
+    python scripts/prepare_yolo_dataset.py data/pig_frames/train data/yolo_dataset/train
 fi
 
-if [ -d "data/dog_frames/val" ]; then
+if [ -d "data/pig_frames/val" ]; then
     echo "Preparing validation dataset..."
-    python scripts/prepare_yolo_dataset.py data/dog_frames/val data/yolo_dataset/val
+    python scripts/prepare_yolo_dataset.py data/pig_frames/val data/yolo_dataset/val
 fi
 
 echo ""
@@ -73,9 +73,9 @@ echo "Training pipeline complete!"
 echo "=========================================="
 echo ""
 echo "Your trained model is saved at:"
-echo "  dog_behavior_classification/yolov8_dog_behavior/weights/best.pt"
+echo "  pig_behavior_classification/yolov8_pig_behavior/weights/best.pt"
 echo ""
 echo "To use it, set:"
-echo "  export YOLO_MODEL_PATH=\"dog_behavior_classification/yolov8_dog_behavior/weights/best.pt\""
+echo "  export YOLO_MODEL_PATH=\"pig_behavior_classification/yolov8_pig_behavior/weights/best.pt\""
 echo ""
 

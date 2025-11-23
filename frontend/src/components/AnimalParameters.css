@@ -46,8 +46,8 @@
 
 .parameter-input:focus {
   outline: none;
-  border-color: #d4a574;
-  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+  border-color: #ff8080;
+  box-shadow: 0 0 0 3px rgba(255, 128, 128, 0.1);
 }
 
 .parameter-textarea {

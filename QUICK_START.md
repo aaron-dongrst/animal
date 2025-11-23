@@ -1,19 +1,20 @@
-# ⚡ Quick Start - DogVision
+# ⚡ Quick Start - PigVision
 
 ## What You Need to Do (Only 1 Thing!)
 
-### ⭐ Upload Your Dog Videos
+### ⭐ Upload Your Pig Videos
 
 Upload videos to these folders:
 
 ```
-data/dog_training/
+data/pig_training/
 ├── train/          ← 80% of videos
-│   ├── pacing/     ← Dogs pacing
-│   ├── scratching/ ← Dogs scratching
-│   ├── sleeping/   ← Dogs sleeping
-│   ├── walking/    ← Dogs walking
-│   └── resting/    ← Dogs resting
+│   ├── tail_biting/    ← Pigs biting tails (distress)
+│   ├── ear_biting/     ← Pigs biting ears (distress)
+│   ├── aggression/     ← Aggressive behavior (distress)
+│   ├── eating/         ← Pigs eating (normal)
+│   ├── sleeping/       ← Pigs sleeping (normal)
+│   └── rooting/        ← Pigs rooting (normal)
 ├── val/            ← 10% of videos (same structure)
 └── test/           ← 10% of videos (same structure)
 ```
@@ -31,7 +32,7 @@ data/dog_training/
 
 2. **Configure:**
    ```bash
-   export YOLO_MODEL_PATH="dog_behavior_classification/yolov8_dog_behavior/weights/best.pt"
+   export YOLO_MODEL_PATH="pig_behavior_classification/yolov8_pig_behavior/weights/best.pt"
    export OPENAI_API_KEY="your-key-here"
    ```
 
@@ -48,13 +49,18 @@ data/dog_training/
 
 ---
 
-## 📚 Need More Help?
+## Behavior Classes
 
-- **`README.md`** - Main project overview
-- **`docs/START_HERE.md`** - Quick start guide
-- **`docs/EXACT_STEPS.md`** - Detailed instructions
+**Distress (3 classes):**
+- `tail_biting` - Pigs biting tails
+- `ear_biting` - Pigs biting ears
+- `aggression` - Aggressive behavior
+
+**Normal (3 classes):**
+- `eating` - Pigs eating
+- `sleeping` - Pigs sleeping
+- `rooting` - Pigs rooting
 
 ---
 
-**Everything is organized and ready! Just upload videos!** 🐕
-
+**Everything is organized and ready! Just upload videos!** 🐷

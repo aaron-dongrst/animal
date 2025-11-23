@@ -1,17 +1,18 @@
 """
-Prepare dog behavior frames for YOLO classification training.
+Prepare pig behavior frames for YOLO classification training.
 """
 import os
 import shutil
 from pathlib import Path
 
-# Behavior classes (mapped to numbers)
+# Pig behavior classes (mapped to numbers)
 BEHAVIOR_CLASSES = {
-    "pacing": 0,
-    "scratching": 1,
-    "sleeping": 2,
-    "walking": 3,
-    "resting": 4
+    "tail_biting": 0,
+    "ear_biting": 1,
+    "aggression": 2,
+    "eating": 3,
+    "sleeping": 4,
+    "rooting": 5
 }
 
 def prepare_yolo_dataset(frames_dir, output_dir):
@@ -69,7 +70,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Usage: python prepare_yolo_dataset.py <frames_dir> <output_dir>")
         print("\nExample:")
-        print("  python prepare_yolo_dataset.py data/dog_frames/train data/yolo_dataset/train")
+        print("  python prepare_yolo_dataset.py data/pig_frames/train data/yolo_dataset/train")
         sys.exit(1)
     
     frames_dir = sys.argv[1]

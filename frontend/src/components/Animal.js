@@ -27,7 +27,7 @@ const Animal = ({ animal, onUpdate, onRemove, canRemove }) => {
     }
 
     if (!animal.animal.species) {
-      onUpdate({ error: "Please enter the dog breed or species" });
+      onUpdate({ error: "Please enter the pig breed or species" });
       return;
     }
 
@@ -110,7 +110,7 @@ const Animal = ({ animal, onUpdate, onRemove, canRemove }) => {
                   Analyzing...
                 </>
               ) : (
-                "Analyze Dog Behavior"
+                "Analyze Pig Behavior"
               )}
             </button>
           </div>

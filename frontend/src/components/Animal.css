@@ -14,7 +14,7 @@
 }
 
 .animal-header {
-  background: #b8865a;
+  background: #ff8080;
   color: white;
   padding: 1rem 1.5rem;
   display: flex;
@@ -87,13 +87,13 @@
 .analyze-section {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 2px solid #d4a574;
+  border-top: 2px solid #ff8080;
 }
 
 .analyze-button {
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background: #d4a574;
+  background: #ff8080;
   color: white;
   border: none;
   border-radius: 2px;
@@ -109,7 +109,7 @@
 }
 
 .analyze-button:hover:not(:disabled) {
-  background: #b8865a;
+  background: #ff6666;
 }
 
 .analyze-button:disabled {
