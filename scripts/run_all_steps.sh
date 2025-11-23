@@ -6,7 +6,7 @@
 set -e  # Exit on error
 
 echo "=========================================="
-echo "Dog Behavior YOLO Training Pipeline"
+echo "Pig Behavior YOLO Training Pipeline"
 echo "=========================================="
 echo ""
 

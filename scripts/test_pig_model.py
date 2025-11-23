@@ -9,7 +9,7 @@ from src.yolo_behavior_classifier import YOLOBehaviorClassifier
 
 def main():
     if len(sys.argv) < 3:
-        print("Usage: python test_dog_model.py <video_path> <model_path>")
+        print("Usage: python test_pig_model.py <video_path> <model_path>")
         print("\nExample:")
         print("  python test_pig_model.py data/test_videos/pig_video.mp4 pig_behavior_classification/yolov8_pig_behavior/weights/best.pt")
         sys.exit(1)

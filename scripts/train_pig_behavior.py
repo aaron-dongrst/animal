@@ -25,7 +25,7 @@ def main():
         print(f"Error: Dataset not found at {DATA_YAML}")
         print("Please prepare your dataset first.")
         print("\nSteps:")
-        print("1. Organize videos in data/dog_training/")
+        print("1. Organize videos in data/pig_training/")
         print("2. Extract frames: python scripts/extract_frames.py ...")
         print("3. Prepare dataset: python scripts/prepare_yolo_dataset.py ...")
         return
