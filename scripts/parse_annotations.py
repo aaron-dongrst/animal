@@ -11,19 +11,40 @@ def parse_json_annotation(json_path: str) -> List[Dict]:
     """
     Parse JSON annotation file.
     
+    Supports multiple JSON formats:
+    - List of pig objects
+    - Dict with 'pigs' or 'annotations' key
+    - Dict with video-level data containing pig list
+    
     Returns:
         List of pig objects with tracking_id, frames, bboxes, labels, etc.
     """
     with open(json_path, 'r') as f:
         data = json.load(f)
     
-    # Assuming JSON structure has a list of pigs or similar
-    # Adjust based on your actual JSON structure
+    # Handle different JSON structures
     if isinstance(data, list):
+        # Direct list of pigs
         return data
     elif isinstance(data, dict):
-        # If it's a dict, might have 'pigs' key or similar
-        return data.get('pigs', data.get('annotations', [data]))
+        # Try common keys
+        if 'pigs' in data:
+            return data['pigs']
+        elif 'annotations' in data:
+            return data['annotations']
+        elif 'objects' in data:
+            return data['objects']
+        elif 'tracks' in data:
+            return data['tracks']
+        else:
+            # If dict has frame-level data, might need to restructure
+            # Check if it's a single pig object
+            if 'tracking_id' in data or 'id' in data:
+                return [data]
+            else:
+                # Return empty list if structure is unclear
+                print(f"Warning: Unrecognized JSON structure in {json_path}")
+                return []
     else:
         return []
 
@@ -74,8 +95,10 @@ def extract_pig_crops(video_path: str, annotations: List[Dict], output_dir: str,
         if isinstance(frames, list) and isinstance(bboxes, list):
             # If frames and bboxes are lists, they should be the same length
             for i, frame_num in enumerate(frames):
+                # Handle case where bboxes might be shorter or longer
                 if i >= len(bboxes):
-                    break
+                    # If no bbox for this frame, skip
+                    continue
                 
                 bbox = bboxes[i]
                 if not bbox or len(bbox) < 4:

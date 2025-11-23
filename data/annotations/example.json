@@ -1,0 +1,44 @@
+[
+  {
+    "tracking_id": 1,
+    "frames": [0, 1, 2, 3, 4, 5],
+    "bounding_box": [
+      [100, 150, 200, 250],
+      [105, 152, 205, 252],
+      [110, 155, 210, 255],
+      [115, 157, 215, 257],
+      [120, 160, 220, 260],
+      [125, 162, 225, 262]
+    ],
+    "behavior_label": "tail_biting",
+    "visibility": 1.0,
+    "ground_truth": true
+  },
+  {
+    "tracking_id": 2,
+    "frames": [10, 11, 12, 13, 14],
+    "bounding_box": [
+      [300, 200, 400, 300],
+      [302, 201, 402, 301],
+      [304, 202, 404, 302],
+      [306, 203, 406, 303],
+      [308, 204, 408, 304]
+    ],
+    "behavior_label": "eating",
+    "visibility": 1.0,
+    "ground_truth": true
+  },
+  {
+    "tracking_id": 3,
+    "frames": [20, 21, 22],
+    "bounding_box": [
+      [150, 100, 250, 200],
+      [152, 101, 252, 201],
+      [154, 102, 254, 202]
+    ],
+    "behavior_label": "aggression",
+    "visibility": 0.9,
+    "ground_truth": true
+  }
+]
+
